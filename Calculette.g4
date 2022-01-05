@@ -18,6 +18,7 @@ calcul returns [ String code ] //start
     NEWLINE*
     (instruction { $code += $instruction.code; })*
     { $code += " HALT\n"; }
+    EOF 
 ;
 
 finInstruction
