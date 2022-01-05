@@ -18,7 +18,7 @@ calcul returns [ String code ] //start
     NEWLINE*
     (instruction { $code += $instruction.code; })*
     { $code += " HALT\n"; }
-    EOF 
+
 ;
 
 finInstruction
@@ -100,7 +100,7 @@ assignation returns [ String code ]
     | IDENTIFIANT operateur=('+' | '-' | '*' | '/') expression 
         {
             $code = "PUSHG" + memoire.get($IDENTIFIANT.text) + "\n";
-            $code += expression.code + $operateur.getText() + "\n" + "STOREG " + memoire.get($IDENTIFIANT.text) + "\n";
+            $code += $expression.code + $operateur.getText() + "\n" + "STOREG " + memoire.get($IDENTIFIANT.text) + "\n";
         }
 ;
 
