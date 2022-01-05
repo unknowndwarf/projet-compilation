@@ -85,9 +85,6 @@ instruction returns [ String code ]
             $code = $expression.code;
         }
     | assignation finInstruction
-        {
-            $code = $expression.code;
-        }
     | finInstruction
         {
             $code="";
