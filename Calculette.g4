@@ -28,7 +28,7 @@ finInstruction
 decl returns [ String code ]
     : TYPE IDENTIFIANT finInstruction 
         {
-            memoire.put(IDENTIFIANT.text, adr_variable);  
+            memoire.put($IDENTIFIANT.text, adr_variable);  
             adr_variable++;
             $code = "PUSHI 0\n";
         }
@@ -95,12 +95,12 @@ assignation returns [ String code ]
     : IDENTIFIANT '=' expression
         {
             $code = $expression.code;
-            $code += "STOREG " + memoire.get(IDENTIFIANT.text) + "\n"; 
+            $code += "STOREG " + memoire.get($IDENTIFIANT.text) + "\n"; 
         } // Ici on range la valeur à l'adresse dans le hashmap
     | IDENTIFIANT operateur=('+' | '-' | '*' | '/') expression 
         {
-            $code = "PUSHG" + memoire.get(IDENTIFIANT.text) + "\n";
-            $code += expression.code + $operateur.getText() + "\n" + STOREG " + memoire.get(IDENTIFIANT.text) + "\n";
+            $code = "PUSHG" + memoire.get($IDENTIFIANT.text) + "\n";
+            $code += expression.code + $operateur.getText() + "\n" + "STOREG " + memoire.get($IDENTIFIANT.text) + "\n";
         }
 ;
 
